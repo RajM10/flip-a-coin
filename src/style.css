@@ -1,0 +1,91 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: none;
+  padding: none;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(76, 208, 225);
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+#heading-of-page {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 10px;
+  font-weight: 700;
+  font-size: 40px;
+}
+#button-result {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  bottom: 80px;
+  left: 0;
+  right: 0;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 230px;
+}
+.coin {
+  height: 80px;
+  width: 80px;
+  border: none;
+  border-radius: 30px;
+}
+@keyframes coinFall {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-600px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+@keyframes coinSpin {
+  from {
+    transform: rotateX(0deg);
+  }
+  to {
+    transform: rotateX(360deg);
+  }
+}
+#coin-image {
+  height: 70px;
+}
+#result {
+  color: white;
+}
+#flip-button {
+  background-color: rgba(0, 255, 34, 0.594);
+  height: 80px;
+  width: 80px;
+  border: none;
+  border-radius: 40px;
+  box-shadow: 1px 1px 10px rgb(109, 109, 109);
+}
