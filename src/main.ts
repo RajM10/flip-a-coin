@@ -28,9 +28,7 @@ document.getElementById("flip-button").addEventListener("click", () => {
   //applying animation
   element.style = "animation:coinSpin 300ms linear infinite;";
   element2.style = "animation:coinFall 1.5s ease-out ;";
-
   const Result = result();
-
   setTimeout(() => {
     element.style.animation = "none";
     element2.style.animation = "none";
