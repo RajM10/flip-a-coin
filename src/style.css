@@ -42,7 +42,7 @@ body {
   left: 0;
   right: 0;
 }
-.container {
+#coin-container {
   display: flex;
   justify-content: center;
   position: absolute;
@@ -50,7 +50,7 @@ body {
   right: 0;
   bottom: 230px;
 }
-.coin {
+#coin {
   height: 80px;
   width: 80px;
   border: none;
