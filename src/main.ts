@@ -18,7 +18,6 @@ export function result() {
   if (randomValue >= 0.54) return "heads";
   else return "tails";
 }
-
 document.getElementById("flip-button").addEventListener("click", () => {
   const resultElement = document.getElementById("result");
   resultElement.innerHTML = "Flipping..";
