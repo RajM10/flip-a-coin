@@ -1,13 +1,173 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/coin.png" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <!-- SEO Meta Tags -->
+    <title>Coin Flipper - Test Coin Fairness & Probability Calculator</title>
+    <meta
+      name="description"
+      content="Test if your coin is fair with our real-time probability calculator. Track heads vs tails, calculate percentages, and determine coin bias instantly." />
+    <meta
+      name="keywords"
+      content="coin flip, probability calculator, fair coin test, heads tails, random generator, statistics" />
+    <meta
+      name="author"
+      content="Coin Flipper App" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta
+      property="og:title"
+      content="Coin Flipper - Test Coin Fairness" />
+    <meta
+      property="og:description"
+      content="Test if your coin is fair with real-time probability tracking and statistics." />
+    <meta
+      property="og:type"
+      content="website" />
+    <meta
+      property="og:url"
+      content="https://coinflipper.app" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta
+      name="twitter:card"
+      content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Coin Flipper - Test Coin Fairness" />
+    <meta
+      name="twitter:description"
+      content="Test if your coin is fair with real-time probability tracking." />
+
+    <!-- Preload critical resources -->
+    <link
+      rel="preload"
+      href="/coin/heads.png"
+      as="image" />
+    <link
+      rel="preload"
+      href="/coin/tails.png"
+      as="image" />
+    <link
+      rel="preload"
+      href="/coin.png"
+      as="image" />
+
+    <!-- External CSS -->
+    <link
+      rel="stylesheet"
+      href="./src/style.css" />
+
+    <!-- Inline critical CSS -->
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <div id="app">
+      <div id="main-content">
+        <div id="coin-flip-section">
+          <div id="coin-container">
+            <img
+              id="coin"
+              src="/coin/heads.png"
+              alt="coin"
+              width="120"
+              height="120" />
+          </div>
+          <div id="button-result">
+            <button
+              id="flip-button"
+              aria-label="Flip coin">
+              <img
+                id="coin-image"
+                src="/coin.png"
+                alt="flip"
+                width="50"
+                height="50" />
+            </button>
+            <p id="result"></p>
+          </div>
+        </div>
+
+        <div id="info-section">
+          <header id="main-header">
+            <h1 id="heading-of-page">Coin Flipper</h1>
+          </header>
+          <div id="info-container">
+            <div id="purpose-container">
+              <h2>Purpose</h2>
+              <p>
+                This website helps you test whether a coin flip is fair or
+                biased. By tracking your flips in real-time, you can see the
+                probability of heads vs tails and determine if the coin is truly
+                random.
+              </p>
+            </div>
+
+            <div id="stats-container">
+              <h2>Real-time Statistics</h2>
+              <div id="stats-grid">
+                <div class="stat-item">
+                  <span class="stat-label">Total Flips:</span>
+                  <span
+                    id="total-flips"
+                    class="stat-value"
+                    >0</span
+                  >
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Heads:</span>
+                  <span
+                    id="heads-count"
+                    class="stat-value"
+                    >0</span
+                  >
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Tails:</span>
+                  <span
+                    id="tails-count"
+                    class="stat-value"
+                    >0</span
+                  >
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Heads %:</span>
+                  <span
+                    id="heads-percentage"
+                    class="stat-value"
+                    >0%</span
+                  >
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Tails %:</span>
+                  <span
+                    id="tails-percentage"
+                    class="stat-value"
+                    >0%</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div id="fairness-indicator">
+              <h3>Fairness Check</h3>
+              <div id="fairness-bar">
+                <div id="fairness-fill"></div>
+              </div>
+              <p id="fairness-text">Start flipping to check fairness!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      type="module"
+      src="./src/main.ts"></script>
   </body>
 </html>

@@ -1,23 +1,17 @@
+@import "tailwindcss";
+
 :root {
-  /* Fun color variables */
-  --primary-bg: #667eea;
+  --primary-bg: #2a387a;
   --secondary-bg: #764ba2;
   --accent-color: #f093fb;
-  --text-color: #ffffff;
+  --text-color: #000000;
   --button-color: #4facfe;
   --button-hover: #00f2fe;
   --stats-bg: #a8edea;
   --stats-text: #2c3e50;
-  --info-bg: #f8f9fa;
+  --info-bg: #bbbbbb;
   --info-text: #2c3e50;
   --border-color: #e9ecef;
-
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
@@ -26,12 +20,11 @@
   box-sizing: border-box;
 }
 
+html {
+  background: var(--primary-bg);
+}
+
 body {
-  background: linear-gradient(
-    135deg,
-    var(--primary-bg) 0%,
-    var(--secondary-bg) 100%
-  );
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   min-height: 100vh;
@@ -46,11 +39,13 @@ body {
 }
 
 #main-header {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 20px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  padding: 10px;
   text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 10;
 }
 
 #heading-of-page {
@@ -58,10 +53,6 @@ body {
   font-size: 48px;
   user-select: none;
   color: var(--text-color);
-  background: linear-gradient(45deg, var(--accent-color), var(--button-color));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   margin: 0;
 }
 
@@ -71,9 +62,12 @@ body {
   min-height: 0;
 }
 
-/* Left side - Coin flip section (full height) */
 #coin-flip-section {
-  flex: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 50dvw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -138,51 +132,50 @@ body {
   min-height: 27px;
 }
 
-/* Right side - Info section (scrollable) */
 #info-section {
-  flex: 1;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 50dvw;
   background: var(--info-bg);
   overflow-y: auto;
-  padding: 30px;
+  padding: 6rem 30px 30px 30px;
   color: var(--info-text);
 }
 
-#purpose-container {
+#purpose-container,
+#stats-container,
+#fairness-indicator {
   background: white;
   border-radius: 15px;
   padding: 25px;
   margin-bottom: 25px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#purpose-container {
   border-left: 4px solid var(--button-color);
 }
 
-#purpose-container h2 {
+#stats-container {
+  border-left: 4px solid var(--accent-color);
+}
+
+#fairness-indicator {
+  border-left: 4px solid #28a745;
+}
+
+h2,
+h3 {
   color: var(--info-text);
   font-size: 24px;
   margin-bottom: 15px;
   font-weight: 700;
 }
 
-#purpose-container p {
-  line-height: 1.6;
-  color: #666;
-}
-
-#stats-container {
-  background: white;
-  border-radius: 15px;
-  padding: 25px;
-  margin-bottom: 25px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  border-left: 4px solid var(--accent-color);
-}
-
-#stats-container h2 {
-  color: var(--info-text);
-  font-size: 24px;
-  margin-bottom: 20px;
-  font-weight: 700;
-  text-align: center;
+h3 {
+  font-size: 20px;
 }
 
 #stats-grid {
@@ -212,21 +205,6 @@ body {
   color: var(--button-color);
 }
 
-#fairness-indicator {
-  background: white;
-  border-radius: 15px;
-  padding: 25px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  border-left: 4px solid #28a745;
-}
-
-#fairness-indicator h3 {
-  color: var(--info-text);
-  font-size: 20px;
-  margin-bottom: 15px;
-  font-weight: 700;
-}
-
 #fairness-bar {
   width: 100%;
   height: 20px;
@@ -249,7 +227,6 @@ body {
   color: #666;
 }
 
-/* Animations */
 @keyframes coinFall {
   0% {
     transform: translateY(0px);
@@ -274,104 +251,59 @@ body {
   }
 }
 
-/* Mobile Responsive Design */
 @media (max-width: 768px) {
   #main-content {
     flex-direction: column;
   }
-
   #coin-flip-section {
+    position: relative;
+    width: 100%;
+    min-height: 50vh;
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    min-height: 50vh;
   }
-
   #info-section {
+    position: relative;
+    width: 100%;
     min-height: 50vh;
     padding: 20px;
   }
-
   #heading-of-page {
     font-size: 36px;
   }
-
   #coin {
     height: 100px;
     width: 100px;
     border-radius: 50px;
   }
-
   #flip-button {
     height: 70px;
     width: 70px;
   }
-
   #coin-image {
     height: 40px;
     width: 40px;
   }
-
   #stats-grid {
     grid-template-columns: 1fr;
-  }
-
-  .stat-item {
-    padding: 10px 12px;
-  }
-
-  .stat-value {
-    font-size: 16px;
   }
 }
 
 @media (max-width: 480px) {
-  #main-header {
-    padding: 15px;
-  }
-
   #heading-of-page {
     font-size: 28px;
   }
-
-  #coin-flip-section {
-    padding: 20px;
-    min-height: 40vh;
-  }
-
-  #info-section {
-    padding: 15px;
-    min-height: 60vh;
-  }
-
   #coin {
     height: 80px;
     width: 80px;
     border-radius: 40px;
   }
-
   #flip-button {
     height: 60px;
     width: 60px;
   }
-
   #coin-image {
     height: 35px;
     width: 35px;
-  }
-
-  #purpose-container,
-  #stats-container,
-  #fairness-indicator {
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-
-  #purpose-container h2,
-  #stats-container h2 {
-    font-size: 20px;
-  }
-
-  #fairness-indicator h3 {
-    font-size: 18px;
   }
 }
