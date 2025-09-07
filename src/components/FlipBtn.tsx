@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 export default function FlipBtn() {
@@ -20,7 +21,7 @@ export default function FlipBtn() {
         onMouseDown={() => setIsFliping(true)}
         onMouseUp={() => setIsFliping(false)}
         onMouseLeave={() => setIsFliping(false)}>
-        <img
+        <Image
           id='coin-image'
           src='/coin.png'
           alt='flip'
