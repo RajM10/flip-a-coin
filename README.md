@@ -12,6 +12,4 @@ Jus a same said flip a coin
 
 ## Technologies Used
 
-- HTML5
-- CSS3 (with Animations)
-- Typescript
+- NextJS
