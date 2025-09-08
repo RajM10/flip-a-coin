@@ -1,16 +1,23 @@
+import { TossResult } from "@/helper/SuperImp";
 import Image from "next/image";
 
-export default function TossCoin() {
+export default function TossCoin({
+  isFlipping,
+  Result,
+}: {
+  isFlipping: boolean;
+  Result: TossResult;
+}) {
   return (
-    <div className='relative'>
-      <div className='absolute inset-0 translate-x-2 translate-y-2 bg-[oklch(0.6_0.3_240)] rounded-full -z-10'></div>
+    <div className={`relative mx-auto ${isFlipping ? "coin-fall-motion" : ""}`}>
       <Image
-        src='/coin/heads.png'
+        src={`${Result === "heads" ? "/coin/heads.png" : "/coin/tails.png"}`}
         alt='coin'
         width='140'
         height='140'
-        className='rounded-full bg-[oklch(0.98_0.02_95)] p-3 animate-[wobble_2400ms_ease-in-out_infinite]
-        '
+        className={`rounded-full bg-[oklch(0.98_0.02_95)] p-3 ${
+          isFlipping ? "coin-spin-animation" : "coin-wooble"
+        }  `}
       />
     </div>
   );

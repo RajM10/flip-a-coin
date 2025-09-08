@@ -1,49 +1,37 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
-import { recordToss } from "@/helper/api";
+import { useEffect } from "react";
+import { LabelType } from "./TossSection";
 
-export default function FlipBtn() {
-  const [isFliping, setIsFliping] = useState(false);
-  const [label, setLabel] = useState("Press SPACE to flip!");
-
-  const doFlip = useCallback(async () => {
-    try {
-      setIsFliping(true);
-      const { result } = await recordToss();
-      setLabel(result.toUpperCase());
-    } catch (e) {
-      setLabel("Error");
-    } finally {
-      setTimeout(() => setIsFliping(false), 400);
-    }
-  }, []);
-
+interface FlipBtnProp {
+  label: LabelType;
+  handleFlip: () => Promise<void>;
+}
+export default function FlipBtn({ label, handleFlip }: FlipBtnProp) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.code === "Space") {
         e.preventDefault();
-        void doFlip();
+        handleFlip();
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [doFlip]);
+  }, [handleFlip]);
   return (
     <div
       id='button-result'
-      className='flex flex-col items-center gap-2.5'>
+      className='flex flex-col items-center gap-2.5 mt-2 mx-auto'>
       <button
         id='flip-button'
         className={`rounded-full relative size-20 flex items-center justify-center select-none bg-secondary
         transition-transform active:translate-x-[2px] active:translate-y-[2px]
          before:absolute before:inset-0 before:translate-x-[2px] before:translate-y-[2px] before:bg-accent before:-z-10 before:rounded-full
          after:absolute after:inset-[2px] after:rounded-full
-        ${isFliping ? "animate-[wobble_500ms_ease-in-out]" : ""}
         `}
         aria-label='Flip coin'
-        onClick={() => void doFlip()}>
+        onClick={handleFlip}>
         <Image
           id='coin-image'
           src='/coin.png'
@@ -55,8 +43,12 @@ export default function FlipBtn() {
       <p
         id='result'
         className='px-3 py-1 nb-border-light surface-muted nb-shadow-soft rounded-md text-sm'>
-        {label}
+        {labelFormat(label)}
       </p>
     </div>
   );
+}
+function labelFormat(label: LabelType) {
+  if (label === "Press SPACE to flip!") return label;
+  return label === "heads" ? "It's Head" : "It's Tail";
 }
