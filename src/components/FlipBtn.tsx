@@ -1,10 +1,35 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { recordToss } from "@/helper/api";
 
 export default function FlipBtn() {
   const [isFliping, setIsFliping] = useState(false);
+  const [label, setLabel] = useState("Press SPACE to flip!");
+
+  const doFlip = useCallback(async () => {
+    try {
+      setIsFliping(true);
+      const { result } = await recordToss();
+      setLabel(result.toUpperCase());
+    } catch (e) {
+      setLabel("Error");
+    } finally {
+      setTimeout(() => setIsFliping(false), 400);
+    }
+  }, []);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.code === "Space") {
+        e.preventDefault();
+        void doFlip();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [doFlip]);
   return (
     <div
       id='button-result'
@@ -18,9 +43,7 @@ export default function FlipBtn() {
         ${isFliping ? "animate-[wobble_500ms_ease-in-out]" : ""}
         `}
         aria-label='Flip coin'
-        onMouseDown={() => setIsFliping(true)}
-        onMouseUp={() => setIsFliping(false)}
-        onMouseLeave={() => setIsFliping(false)}>
+        onClick={() => void doFlip()}>
         <Image
           id='coin-image'
           src='/coin.png'
@@ -32,7 +55,7 @@ export default function FlipBtn() {
       <p
         id='result'
         className='px-3 py-1 nb-border-light surface-muted nb-shadow-soft rounded-md text-sm'>
-        Press SPACE to flip!
+        {label}
       </p>
     </div>
   );

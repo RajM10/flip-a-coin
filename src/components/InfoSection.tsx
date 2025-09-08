@@ -1,3 +1,5 @@
+import Info from "./Info";
+
 export default function InfoSection() {
   return (
     <div className='top-0 fixed right-0 bg-secondary  bottom-0 w-[50dvw] px-9 py-4 pb-10 overflow-y-auto'>
@@ -18,35 +20,7 @@ export default function InfoSection() {
           </p>
         </div>
 
-        <div className='  p-6'>
-          <div className='flex items-center justify-between mb-3'>
-            <h2 className='text-2xl paper-text bg-accent'>
-              Real-time Statistics
-            </h2>
-          </div>
-          <div className='grid grid-cols-2 gap-4'>
-            <div className='stat-item  rounded-lg p-4 surface'>
-              <span className=' block text-xs '>Total Flips:</span>
-              <span className='stat-value text-3xl'>0</span>
-            </div>
-            <div className='stat-item rounded-lg p-4 surface'>
-              <span className=' block text-xs '>Heads:</span>
-              <span className='stat-value text-3xl'>0</span>
-            </div>
-            <div className='stat-item  rounded-lg p-4 surface'>
-              <span className=' block text-xs '>Tails:</span>
-              <span className='stat-value text-3xl'>0</span>
-            </div>
-            <div className='stat-item  rounded-lg p-4 surface'>
-              <span className=' block text-xs '>Heads %:</span>
-              <span className='stat-value text-3xl'>0%</span>
-            </div>
-            <div className='stat-item  rounded-lg p-4 surface'>
-              <span className=' block text-xs '>Tails %:</span>
-              <span className='stat-value text-3xl'>0%</span>
-            </div>
-          </div>
-        </div>
+        <Info />
       </div>
     </div>
   );
