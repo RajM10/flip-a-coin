@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode, useEffect, useState } from "react";
+import { formatCount } from "@/helper/number";
 import { fetchStats } from "@/helper/api";
 
 export default function Info() {
@@ -45,11 +46,11 @@ export default function Info() {
       <div className='grid grid-cols-2 gap-4 last:col-span-2'>
         <InfoSection>
           <InfoHeading>Heads:</InfoHeading>
-          <InfoDetail>{heads}</InfoDetail>
+          <InfoDetail>{formatCount(heads, total)}</InfoDetail>
         </InfoSection>
         <InfoSection>
           <InfoHeading>Tails:</InfoHeading>
-          <InfoDetail>{tails}</InfoDetail>
+          <InfoDetail>{formatCount(tails, total)}</InfoDetail>
         </InfoSection>
         <InfoSection>
           <InfoHeading>Heads %:</InfoHeading>
@@ -61,7 +62,7 @@ export default function Info() {
         </InfoSection>
         <InfoSection>
           <InfoHeading>Total Flips:</InfoHeading>
-          <InfoDetail>{total}</InfoDetail>
+          <InfoDetail>{formatCount(total)}</InfoDetail>
         </InfoSection>
       </div>
     </div>

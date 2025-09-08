@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { formatCount } from "@/helper/number";
 
 type TossSide = "heads" | "tails";
 
@@ -85,7 +86,7 @@ export default function UserStats() {
         <div className='flex items-center gap-3 mb-1'>
           <span className='paper-text'>Heads</span>
           <span className='text-2xl bg-primary text-accent px-2 py-1 rounded-md'>
-            {heads}
+            {formatCount(heads, total)}
           </span>
           <span className='paper-text'>{headPct}%</span>
         </div>
@@ -101,7 +102,7 @@ export default function UserStats() {
         <div className='flex items-center gap-3 mb-1'>
           <span className='paper-text'>Tails</span>
           <span className='text-2xl bg-primary text-accent px-2 py-1 rounded-md'>
-            {tails}
+            {formatCount(tails, total)}
           </span>
           <span className='paper-text'>{tailPct}%</span>
         </div>
@@ -135,7 +136,7 @@ export default function UserStats() {
         </svg>
       </div>
 
-      <div className='mt-3 paper-text'>Total flips: {total}</div>
+      <div className='mt-3 paper-text'>Total flips: {formatCount(total)}</div>
     </div>
   );
 }
