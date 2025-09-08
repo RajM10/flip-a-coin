@@ -3,7 +3,9 @@ import TossSection from "@/components/TossSection";
 
 export default function Home() {
   return (
-    <div id='main-content'>
+    <div
+      id='main-content'
+      className='flex flex-col md:block'>
       <TossSection />
       <InfoSection />
     </div>
