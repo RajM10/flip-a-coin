@@ -35,8 +35,8 @@ export default function Info() {
     };
   }, []);
 
-  const headPct = total > 0 ? Math.round((heads / total) * 100) : 0;
-  const tailPct = total > 0 ? Math.round((tails / total) * 100) : 0;
+  const headPct = total > 0 ? ((heads / total) * 100).toPrecision(7) : 0;
+  const tailPct = total > 0 ? ((tails / total) * 100).toPrecision(7) : 0;
 
   return (
     <div className='  p-6'>
