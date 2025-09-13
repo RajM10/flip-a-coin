@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-
+import { Analytics } from "@vercel/analytics/next";
 export const metadata: Metadata = {
   metadataBase: new URL("https://flip-coin-experiment.vercel.app"),
   title: {
@@ -70,6 +70,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
